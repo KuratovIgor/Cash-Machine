@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Task_2", "Test_Task_2\Test_Task_2.csproj", "{3D771A02-B904-4435-A1C9-FE71EEB55D4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashMachine_Lib", "CashMachine_Lib\CashMachine_Lib.csproj", "{D347EDCE-2CD7-493F-811F-8DB014794855}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D771A02-B904-4435-A1C9-FE71EEB55D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D771A02-B904-4435-A1C9-FE71EEB55D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D771A02-B904-4435-A1C9-FE71EEB55D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D771A02-B904-4435-A1C9-FE71EEB55D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D347EDCE-2CD7-493F-811F-8DB014794855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D347EDCE-2CD7-493F-811F-8DB014794855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D347EDCE-2CD7-493F-811F-8DB014794855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D347EDCE-2CD7-493F-811F-8DB014794855}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99D13614-6F73-4814-A897-18B98369D024}
+	EndGlobalSection
+EndGlobal
