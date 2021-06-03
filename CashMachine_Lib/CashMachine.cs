@@ -27,28 +27,29 @@ namespace CashMachine_Lib
                 return account.GetBalance();
             }
 
-            if (countMoney % 10 == 0) //If nominal value is can be exist in cash machine
-            {
-                int gettingBalance = 0; //For counting money which was get from cash machine
-
-                Notify?.Invoke("ВЫДАЧА НАЛИЧНЫХ\r\n");
-
-                gettingBalance = GetBanknotes(gettingBalance, countMoney, nominal);   
-
-                if (!IsCanGetting(gettingBalance, countMoney))
-                {
-                    Notify?.Invoke(null);
-                    Notify?.Invoke("Невозможно выдать такую сумму! В банкомате недостаточно банкнот!");
-                }
-                else {
-                    account.SetBalance(-gettingBalance);
-                }
-            }
-            else
+            if (countMoney % 10 != 0) //If nominal value isn't can be exist in cash machine
             {
                 Notify?.Invoke("К сожалению, в банкомате нет купюр с таким номиналом. Пожалуйста, введите другую сумму!");
+
+                return account.GetBalance();
             }
 
+            int gettingBalance = 0; //For counting money which was get from cash machine
+
+            Notify?.Invoke("ВЫДАЧА НАЛИЧНЫХ\r\n");
+
+            gettingBalance = GetBanknotes(gettingBalance, countMoney, nominal);   
+
+            if (IsCanGetting(gettingBalance, countMoney))
+            {
+                account.SetBalance(-gettingBalance);
+
+                return account.GetBalance();
+            }
+
+            Notify?.Invoke(null);
+            Notify?.Invoke("Невозможно выдать такую сумму! В банкомате недостаточно банкнот!");
+            
             return account.GetBalance();
         }
 
@@ -92,10 +93,10 @@ namespace CashMachine_Lib
 
             for (int i = banknotes.Count - 1; i >= 0; i--)
             {
-                autoNominal = arrayBanknotes[i]; //Banknote which can be issuing
-
                 if (balance == countMoney) //If amount fully issued
                     break;
+
+                autoNominal = arrayBanknotes[i]; //Banknote which can be issuing
 
                 //While cash machine can be to issue this banknote
                 while (autoNominal + balance <= countMoney && banknotes[autoNominal] > 0)
@@ -119,17 +120,11 @@ namespace CashMachine_Lib
 
             while (index < money.Count)
             {
-                if (banknotes.ContainsKey(money[index])) //If banknote is can be exist in cash machine than put it
-                {
-                    banknotes[money[index]]++;
-                    _countBanknotes++;
-                    _balance += money[index];
-                    account.SetBalance(money[index]);
-                }
-                else
-                {
-                    Notify?.Invoke("Банкомат не принимает купюры с таким номиналом");
-                }
+                banknotes[money[index]]++;
+                _countBanknotes++;
+                _balance += money[index];
+
+                account.SetBalance(money[index]);
 
                 index++;
             }
@@ -148,15 +143,14 @@ namespace CashMachine_Lib
 
         public void FillCashMashine(List<int> banknote) //Filling cash machine
         {
-            if (_countBanknotes < _maxCountBanknote) //If the banknote can fit in cash machine 
-            {
-                Fill(banknote);
-                Notify?.Invoke("Банкомат пополнен!");
-            }
-            else
+            if (_countBanknotes > _maxCountBanknote) //If the banknote can't fit in cash machine 
             {
                 Notify?.Invoke("Банкомат полон!");
+                return ;
             }
+
+            Fill(banknote);
+            Notify?.Invoke("Банкомат пополнен!");
         }
 
         private void Fill(List<int> banknote)
@@ -164,12 +158,9 @@ namespace CashMachine_Lib
             int index = 0;
             while (index < banknote.Count)
             {
-                if (banknotes.ContainsKey(banknote[index])) //If banknote is can be exist in cash machine than put it
-                {
-                    banknotes[banknote[index]]++;
-                    _countBanknotes++;
-                    _balance += banknote[index];
-                }
+                banknotes[banknote[index]]++;
+                _countBanknotes++;
+                _balance += banknote[index];
 
                 index++;
             }
