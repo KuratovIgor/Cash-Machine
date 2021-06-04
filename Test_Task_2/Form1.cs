@@ -62,7 +62,7 @@ namespace Test_Task_2
         //Click button "Внести наличные"
         private void PutMoney_Click(object sender, EventArgs e)
         {
-            PutMoneyForm newForm = new PutMoneyForm();
+            PutMoneyForm newForm = new PutMoneyForm(bankomat);
             newForm.ShowDialog();
             Continue.Visible = true;
             Screen.Text = "";
@@ -88,7 +88,7 @@ namespace Test_Task_2
         //Click button "Пополнить банкомат"
         private void FillCashMachine_Click(object sender, EventArgs e)
         {
-            FillCashMachineForm newForm = new FillCashMachineForm();
+            FillCashMachineForm newForm = new FillCashMachineForm(bankomat);
             newForm.ShowDialog();
             PasteCard.Visible = false;
             OK.Visible = true;

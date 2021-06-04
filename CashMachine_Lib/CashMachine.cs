@@ -5,15 +5,15 @@ namespace CashMachine_Lib
 {
     public class CashMachine
     {
-        Dictionary<int, int> banknotes = new Dictionary<int, int> //Nominal of banknotes
+        public Dictionary<int, int> banknotes = new Dictionary<int, int> //Nominal of banknotes
         {
             { 10, 0 }, { 50, 0 }, { 100, 0 }, { 200, 0 }, { 500, 0 }, { 1000, 0 }, { 2000, 0 }, { 5000, 0 }
         };
+        private int[] arrayBanknotes = new int[] { 10, 50, 100, 200, 500, 1000, 2000, 5000 };
 
         public delegate void ShowMessage(string message);
         public event ShowMessage Notify;
 
-        private int[] arrayBanknotes = new int[] { 10, 50, 100, 200, 500, 1000, 2000, 5000 };
         private int _maxCountBanknote = 100; //Maximum quantity of banknotes in cash machine
         private int _countBanknotes = 0; //Quantity of banknotes in cash machine
         private int _balance = 0; //Balance in cash machine
@@ -38,7 +38,7 @@ namespace CashMachine_Lib
 
             Notify?.Invoke("ВЫДАЧА НАЛИЧНЫХ\r\n");
 
-            gettingBalance = GetBanknotes(gettingBalance, countMoney, nominal);   
+            gettingBalance = GetBanknotes(gettingBalance, countMoney, nominal);
 
             if (IsCanGetting(gettingBalance, countMoney))
             {
@@ -49,7 +49,7 @@ namespace CashMachine_Lib
 
             Notify?.Invoke(null);
             Notify?.Invoke("Невозможно выдать такую сумму! В банкомате недостаточно банкнот!");
-            
+
             return account.GetBalance();
         }
 
@@ -81,7 +81,7 @@ namespace CashMachine_Lib
         private bool IsCanGetting(int gettingBalance, int countMoney)
         {
             if (gettingBalance == 0 || _countBanknotes == 0 ||
-                gettingBalance > countMoney || gettingBalance < countMoney) 
+                gettingBalance > countMoney || gettingBalance < countMoney)
                 return false;
             else
                 return true;
@@ -105,7 +105,7 @@ namespace CashMachine_Lib
                     banknotes[autoNominal]--;
                     _countBanknotes--;
                     _balance -= autoNominal;
-                  //  account.SetBalance(-autoNominal);
+                    //  account.SetBalance(-autoNominal);
                     Notify?.Invoke($"{autoNominal}");
                 }
             }
@@ -129,7 +129,7 @@ namespace CashMachine_Lib
                 index++;
             }
 
-             foreach(int nominal in money) //Counting how much money was putting in account
+            foreach (int nominal in money) //Counting how much money was putting in account
                 sum += nominal;
 
             Notify?.Invoke($"Внесено наличных:\r\n{sum}");
@@ -146,7 +146,7 @@ namespace CashMachine_Lib
             if (_countBanknotes > _maxCountBanknote) //If the banknote can't fit in cash machine 
             {
                 Notify?.Invoke("Банкомат полон!");
-                return ;
+                return;
             }
 
             Fill(banknote);
