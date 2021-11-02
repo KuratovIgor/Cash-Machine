@@ -1,4 +1,4 @@
-# Cash Machine
+# ATM
 ---
 ## The project is a test task for the position of C# developer
 ### The ATM application is designed to work with user's bank accounts.
