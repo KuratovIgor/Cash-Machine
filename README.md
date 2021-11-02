@@ -1,14 +1,19 @@
-# Cash-Machine
-Приложение “Банкомат” предназначено для работы с банковскими счетами пользователей.
+# Cash Machine
+---
+## The project is a test task for the position of C# developer
+### The ATM application is designed to work with user's bank accounts.
 
-Функционал:
-- Внесение наличных
-- Снятие наличных
-- Просмотр состояния
-- Пополнение банкомата купюрами
+### Functional:
+- *Cash deposit*
+- *Cash withdrawal*
+- *View status*
+- *ATM replenishment with banknotes*
 
-Перед началом работы с банкоматом нужно вставить карту и пополнить банкомат, так как изначально он пуст. Далее при помощи кнопок можно использовать весь функционал банкомата.
+### Before you start working with an ATM, you need to insert a card and top up the ATM, since it is initially empty. Then, using the buttons, you can use all the functionality of the ATM. `Datas don't saving because application haven't data base.`
 
-Для запуска приложения следует сначала пересобрать решение и скомпилировать exe файл.
+### *To run the application, you must:*
+   - download repository
+      *      git clone https://github.com/KuratovIgor/Cash-Machine.git
+   - Open project by Visual Studio, rebuild the solution and compile the exe file.
 
-Подробнее о функционале и алгоритме запуска приложения описано в документации.
+### For more information about the functionality and the algorithm for launching the application, see the documentation.
